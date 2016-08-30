@@ -15,6 +15,8 @@ $dbname = 'ime baze';
      exit();
   }
 
+//postavljanje enkodinga u aplikaciju
+  $result = $dblink->query("set names 'utf8'");
 //deset redova
   $result = $dblink->query("SELECT * FROM imeTabele LIMIT 10");
 

@@ -1,0 +1,26 @@
+< !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+
+<form action="djubre.php" method="post">
+<input name="q" type="text" />
+<input type="submit" />
+</form>
+
+< ?php
+mysql_connect(':/tmp/mysql.sock', 'root', '') or die(mysql_error());
+mysql_select_db('test') or die (mysql_error());
+$res = mysql_query('select djubre from smece');
+while ($row=mysql_fetch_row($res)) echo $row[0].'<br/>';
+@mysql_free_result($res);
+
+if ( isset( $_POST['q'] )  ) {
+  $djubre = $_POST['q'];
+  mysql_query("insert into smece (djubre) values ('$djubre')");
+  mysql_close();
+}
+?>
+</body>
+</html>
